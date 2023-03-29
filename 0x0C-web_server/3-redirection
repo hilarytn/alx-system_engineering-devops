@@ -7,6 +7,6 @@ sudo apt-get -y install nginx
 sudo chown -R "$USER":"$USER" /var/www
 echo "Hello World!" | sudo tee /var/www/html/index.html
 sudo sed -i "48i\\\tif (\$request_filename ~ redirect_me){\n\t\t\
-rewrite ^ https://www.github.com/hilarytn/alx-system_engineering-devops/new/master/0x0C-web_server permanent;\n\t}" /etc/nginx/sites-available/default
+rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}" /etc/nginx/sites-available/default
 
 sudo service nginx restart
