@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script configures the Nginx server so that
+# /redirect_me is redirecting to another page
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo chown -R "$USER":"$USER" /var/www
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+sudo sed -i "48i\\\tif (\$request_filename ~ redirect_me){\n\t\t\
+rewrite ^ https://www.github.com/hilarytn/alx-system_engineering-devops/new/master/0x0C-web_server permanent;\n\t}" /etc/nginx/sites-available/default
+
+sudo service nginx restart
