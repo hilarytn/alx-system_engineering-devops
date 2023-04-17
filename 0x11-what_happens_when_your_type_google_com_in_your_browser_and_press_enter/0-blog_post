@@ -1,0 +1,73 @@
+# What happens when you type google.com in your browser and press Enter
+
+Anytime we want to browse the internet, we must do so through a Web Browser. 
+Let’s say you want to visit https://www.google.com, you will need to type it 
+in the web address bar correctly and hit Enter on your keyboard or keypad for
+action to take place. So, what then happens before the web page is displayed 
+in your browser? Let’s walk through the processes briefly:
+After typing the web address (domain name), https://www.google.com, and 
+hitting enter, the various parts of the web infrastructure are utilized.
+
+### Domain Name System/ Domain Name System Server (DNS/DNS Server): 
+On hitting enter the web browser sends a query to the DNS server. The DNS
+server holds a register of all public domain names and their corresponding 
+Internet protocol (IP) addresses. The Recursive DNS server tries to resolve 
+this domain name (google.com in our case) into the corresponding IP address. 
+If it doesn’t have the necessary information, it then forwards the query to 
+the Authoritative DNS Server which then resolves the domain name to the 
+corresponding IP address. In cases where the website had already been visited
+via the same browser, the Caching DNS Server holds the local copy (a temporary 
+database on your computer that keeps records of the recent visits to websites)
+of recent DNS lookups. This local copy speeds up things.
+The essence of the DNS is to keep out the need to memorize IP addresses, by 
+providing human-readable domain names. However, typing the IP address of any 
+website works as well, that’s if you can remember it exactly as it is. Hard right?
+
+### Transmission Control Protocol/Internet Protocol (TCP/IP):  
+After the IP addressof the domain name (google.com in this case) is obtained from
+the DNS, the IP address is used to establish the TCP/IP connection. The TCP/IP 
+are standardized communication protocols of devices over the internet. This
+allows for seamless communication and data sharing across networks between
+devices. The TCP works by managing data transfer in small packets of data until
+the destination is reached on the network. The IP handles routing to the specific
+IP address provided by each device (source and destination device) on the 
+network until the data packets are successfully delivered.
+
+### Firewalls:
+When the connection is established on the network, the firewall 
+stands guard, monitoring the incoming and outgoing traffic. This is to ensure
+that only traffic that is authorized can have passage. This shields your computer
+and/or network from intrusion, malicious or unnecessary traffic, unauthorized 
+remote access, and unwanted/indecent content.
+
+### Hyper-Text Transfer Protocol/ Secure Socket Layer (HTTPS/SSL): 
+After the connection is established, an HTTPS/SSL request is sent by your browser
+to the web server. The web server in return sends the SSL (recently called
+Transport Layer Security – TLS) certificate to your browser, which verifies
+that google.com is safe and legitimate. The SSL certificate is then used by
+your browser to keep the session encrypted and sends it to the Google server. 
+Load Balancers may be used to distribute the load in the case of multiple
+servers or clusters. Google of course has multiple servers in place to handle 
+the millions of requests it gets, one of which is yours. The load balancer 
+typically will forward your request to a suitable web server at a time. This
+is technique is used to provide speedy page loading, avoid overloading any 
+servers, and also, to reduce the downtime of servers.  Load balancers use 
+various algorithms to balance server load.
+
+### Web Servers: 
+The web server can be a physical device or a software
+application responsible for handling HTTPS requests from clients 
+(usually web browsers). The requests are processed and the results
+are returned in the form of a web page/ The web page may contain files:
+images or stylesheets. These are both static web content that web servers
+usually handle. This is not to say web servers cannot handle dynamic requests.
+Dynamic requests refer to the web pages that are engineered by scripts
+placed on the server. Examples of web servers include Apache, Nginx, 
+Microsoft IIS, and many others. The Application Server is ideal for hosting 
+scripts that run to make up dynamic pages based on requests. Google is no 
+exception in this, they have application servers too. This interaction also 
+includes a Database in which the web server and application server fetch data.
+The scripts on the application server operate on the data from the database so 
+as to feed the web server which in turn returns the result to the browser in
+the form of a web page.
+The overall process is termed the HTTPS request-response cycle.
