@@ -5,7 +5,7 @@
 # Make sure that HAProxy can be managed via an init script
 # Install and configure HAproxy on my lb-01 server.
 sudo apt-get -y update
-apt-get -y install haproxy
+sudo apt-get -y install haproxy
 
 # edit config file
 server_config=\
@@ -16,8 +16,8 @@ frontend  hilary-frontend
         default_backend hilary-backend
 backend hilary-backend
         balance roundrobin
-        server 158069-web-01 54.237.49.233:80 check
-        server 158069-web-02 54.236.33.231:80 check
+        server 158069-web-01 34.207.156.159:80 check
+        server 158069-web-02 54.90.40.242:80 check
 "
 echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
