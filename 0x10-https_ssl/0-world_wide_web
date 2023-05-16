@@ -1,18 +1,28 @@
 #!/usr/bin/env bash
-# write a Bash script that will display information about the subdomains
+# Scans a subdomain's record type and
+# informs which IP is pointing to that record
+#
 
-dns_config () {
-    script=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
-    echo "$2 $script" | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
+domain="$1"                                         # Domain name to audit.
+subdomain="$2"                                      # Specific subdomain to audit.
+
+lookup_host() {
+    host_record=$(
+        dig "$1" | grep -A1 'ANSWER SECTION:' | tail -n 1
+    )
+
+    echo "$host_record" |
+    awk '{print "The subdomain","'"$subdomain"'","is a",$4,"record and points to",$5}'
 }
 
-if [ "$#" == 1 ]
-then
-  dns_config "$1" "www"
-  dns_config "$1" "lb-01"
-  dns_config "$1" "web-01"
-  dns_config "$1" "web-02"
-elif [ "$#" == 2 ]
-then
-  dns_config "$1" "$2"
+if [ "$domain" ] && [ "$subdomain" ] ; then         # Display information for the specified subdomain.
+    host="$subdomain.$domain"                       # Concatenates the domain and subdomain.
+    lookup_host "$host"
+elif [ "$domain" ] ; then                           # Display information for its subdomains
+    def_subdomains=(www lb-01 web-01 web-02)        # 'www', 'lb-01', 'web-01' and 'web-02'.
+                                                    # In this specific order.
+    for subdomain in "${def_subdomains[@]}" ; do
+        host="$subdomain.$domain"
+        lookup_host "$host"
+    done
 fi
